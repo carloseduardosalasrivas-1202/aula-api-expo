@@ -1,10 +1,10 @@
 import { View,Text } from "react-native";
-function Perfil() {
+function recSenha() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
+      <Text>Recuperção de senha</Text>
     </View>
   );
 }
 
-export default Perfil
+export default recSenha
