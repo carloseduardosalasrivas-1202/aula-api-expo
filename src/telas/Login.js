@@ -9,10 +9,10 @@ const navigation = useNavigation();
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Login</Text>
-       <Button screen="login">Acessar o App</Button>
+       <Button screen="home">Acessar o App</Button>
         <Link screen="cadUsu">Cadatro de usuario</Link>
-        <Pressable onPress={() => navigation.navigate('recSenha')}>
-          <text>Recuperação de senha </text>
+        <Pressable onPress={() => navigation.navigate('recsenha')}>
+          <Text>Recuperação de senha </Text>
         </Pressable>
     </View>
   );

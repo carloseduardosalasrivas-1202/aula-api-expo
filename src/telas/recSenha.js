@@ -1,5 +1,5 @@
 import { View,Text } from "react-native";
-function recSenha() {
+function RecSenha() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Recuperção de senha</Text>
@@ -7,4 +7,4 @@ function recSenha() {
   );
 }
 
-export default recSenha
+export default RecSenha
