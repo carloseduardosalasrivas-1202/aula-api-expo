@@ -1,11 +1,118 @@
-import { View,Text } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet, SafeAreaView, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+const palette = {
+  bg: '#0b0b0b',
+  card: '#111111',
+  gold: '#c9a227',
+  goldSoft: '#e0bd45',
+  white: '#f6f6f6',
+  text: '#d9d9d9',
+  border: '#2f2f2f',
+};
 
 function HomeScreen() {
+  const navigation = useNavigation();
+
+  const modules = [
+    { label: 'Agendamentos', icon: '📅', route: 'agendamento', value: '12 hoje' },
+    { label: 'Clientes', icon: '👥', route: 'clientes', value: '148 ativos' },
+    { label: 'Barbeiros', icon: '💈', route: 'barbeiros', value: '5 no time' },
+    { label: 'Produtos', icon: '📦', route: 'produtos', value: '84 itens' },
+    { label: 'Financeiro', icon: '📈', route: 'financeiro', value: 'R$ 8.4k' },
+    { label: 'Configurações', icon: '⚙️', route: 'configuracoes', value: 'Loja' },
+  ];
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home </Text>
-    </View>
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.container}>
+        <View style={styles.headerCard}>
+          <Text style={styles.eyebrow}>Barber Prime</Text>
+          <Text style={styles.greeting}>Bem-vindo, Rafael</Text>
+          <Text style={styles.subtitle}>Seu atendimento está pronto para continuar.</Text>
+        </View>
+
+        <View style={styles.grid}>
+          {modules.map((item) => (
+            <Pressable key={item.route} style={styles.tile} onPress={() => navigation.navigate(item.route)}>
+              <Text style={styles.tileIcon}>{item.icon}</Text>
+              <Text style={styles.tileTitle}>{item.label}</Text>
+              <Text style={styles.tileValue}>{item.value}</Text>
+            </Pressable>
+          ))}
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
-export default HomeScreen
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: palette.bg,
+  },
+  container: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+  },
+  headerCard: {
+    backgroundColor: palette.card,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.35)',
+    padding: 24,
+    marginBottom: 20,
+  },
+  eyebrow: {
+    color: palette.gold,
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    marginBottom: 8,
+  },
+  greeting: {
+    color: palette.white,
+    fontSize: 28,
+    fontWeight: '700',
+    marginBottom: 6,
+  },
+  subtitle: {
+    color: palette.text,
+    fontSize: 15,
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  tile: {
+    width: '48%',
+    minHeight: 150,
+    borderRadius: 16,
+    backgroundColor: palette.card,
+    borderWidth: 1,
+    borderColor: palette.border,
+    padding: 18,
+    justifyContent: 'center',
+  },
+  tileIcon: {
+    fontSize: 28,
+    marginBottom: 10,
+  },
+  tileTitle: {
+    color: palette.gold,
+    fontSize: 16,
+    fontWeight: '700',
+    marginBottom: 4,
+  },
+  tileValue: {
+    color: palette.text,
+    fontSize: 14,
+  },
+});
+
+export default HomeScreen;
