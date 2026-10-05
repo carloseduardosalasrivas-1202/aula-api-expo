@@ -21,10 +21,7 @@ const produtos = [
 function Produtos() {
   const navigation = useNavigation();
 
-  const handleNewProduct = () => {
-    Alert.alert('Novo produto', 'A tela de cadastro de produto foi iniciada.');
-    navigation.goBack();
-  };
+  const handleNewProduct = () => navigation.navigate('novoProduto');
 
   return (
     <SafeAreaView style={styles.screen}>

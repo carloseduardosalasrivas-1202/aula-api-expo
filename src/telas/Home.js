@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Pressable } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Pressable, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const palette = {
   bg: '#0b0b0b',
   card: '#111111',
   gold: '#c9a227',
-  goldSoft: '#e0bd45',
   white: '#f6f6f6',
   text: '#d9d9d9',
   border: '#2f2f2f',
@@ -19,17 +18,31 @@ function HomeScreen() {
     { label: 'Agendamentos', icon: '📅', route: 'agendamento', value: '12 hoje' },
     { label: 'Clientes', icon: '👥', route: 'clientes', value: '148 ativos' },
     { label: 'Barbeiros', icon: '💈', route: 'barbeiros', value: '5 no time' },
+    { label: 'Serviços', icon: '✂️', route: 'servicos', value: '4 itens' },
     { label: 'Produtos', icon: '📦', route: 'produtos', value: '84 itens' },
     { label: 'Financeiro', icon: '📈', route: 'financeiro', value: 'R$ 8.4k' },
+    { label: 'Perfil', icon: '👤', route: 'perfil', value: 'Rafael' },
     { label: 'Configurações', icon: '⚙️', route: 'configuracoes', value: 'Loja' },
   ];
+
+  const handleLogout = () => {
+    Alert.alert('Logout', 'Sessão encerrada com sucesso.');
+    navigation.navigate('login');
+  };
 
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
         <View style={styles.headerCard}>
-          <Text style={styles.eyebrow}>Barber Prime</Text>
-          <Text style={styles.greeting}>Bem-vindo, Rafael</Text>
+          <View style={styles.headerTop}>
+            <View>
+              <Text style={styles.eyebrow}>Barber Prime</Text>
+              <Text style={styles.greeting}>Bem-vindo, Rafael</Text>
+            </View>
+            <Pressable style={styles.logoutButton} onPress={handleLogout}>
+              <Text style={styles.logoutText}>Sair</Text>
+            </Pressable>
+          </View>
           <Text style={styles.subtitle}>Seu atendimento está pronto para continuar.</Text>
         </View>
 
@@ -65,6 +78,12 @@ const styles = StyleSheet.create({
     padding: 24,
     marginBottom: 20,
   },
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
   eyebrow: {
     color: palette.gold,
     fontSize: 12,
@@ -77,11 +96,22 @@ const styles = StyleSheet.create({
     color: palette.white,
     fontSize: 28,
     fontWeight: '700',
-    marginBottom: 6,
   },
   subtitle: {
     color: palette.text,
     fontSize: 15,
+  },
+  logoutButton: {
+    backgroundColor: 'rgba(201,162,39,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.4)',
+    borderRadius: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+  },
+  logoutText: {
+    color: palette.gold,
+    fontWeight: '700',
   },
   grid: {
     flexDirection: 'row',

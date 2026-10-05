@@ -21,10 +21,7 @@ const barbeiros = [
 function Barbeiros() {
   const navigation = useNavigation();
 
-  const handleNewBarbeiro = () => {
-    Alert.alert('Novo barbeiro', 'A funcionalidade de cadastro de barbeiro será aberta em breve.');
-    navigation.navigate('home');
-  };
+  const handleNewBarbeiro = () => navigation.navigate('novoBarbeiro');
 
   return (
     <SafeAreaView style={styles.screen}>

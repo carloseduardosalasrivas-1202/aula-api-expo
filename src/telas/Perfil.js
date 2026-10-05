@@ -17,8 +17,10 @@ function Perfil() {
 
   const handleEditProfile = () => {
     Alert.alert('Perfil', 'Suas informações foram carregadas para edição.');
-    navigation.goBack();
+    navigation.navigate('configuracoes');
   };
+
+  const handleBack = () => navigation.goBack();
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -43,9 +45,14 @@ function Perfil() {
           <Text style={styles.value}>Gold Barber</Text>
         </View>
 
-        <Pressable style={styles.button} onPress={handleEditProfile}>
-          <Text style={styles.buttonText}>Editar perfil</Text>
-        </Pressable>
+        <View style={styles.buttonRow}>
+          <Pressable style={styles.button} onPress={handleEditProfile}>
+            <Text style={styles.buttonText}>Editar perfil</Text>
+          </Pressable>
+          <Pressable style={styles.secondaryButton} onPress={handleBack}>
+            <Text style={styles.secondaryButtonText}>Voltar</Text>
+          </Pressable>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -117,15 +124,35 @@ const styles = StyleSheet.create({
     color: palette.text,
     fontSize: 16,
   },
+  buttonRow: {
+    flexDirection: 'row',
+    gap: 10,
+  },
   button: {
+    flex: 1,
     height: 52,
     backgroundColor: palette.gold,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  secondaryButton: {
+    flex: 1,
+    height: 52,
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: palette.gold,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   buttonText: {
     color: '#111111',
+    fontSize: 17,
+    fontWeight: '700',
+  },
+  secondaryButtonText: {
+    color: palette.gold,
     fontSize: 17,
     fontWeight: '700',
   },

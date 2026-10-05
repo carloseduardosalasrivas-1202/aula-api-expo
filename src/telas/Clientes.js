@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -20,9 +20,26 @@ const clientes = [
 
 function Clientes() {
   const navigation = useNavigation();
+  const [filtro, setFiltro] = useState('Todos');
+
+  const listaFiltrada = useMemo(() => {
+    if (filtro === 'Ativos') {
+      return clientes.filter((cliente) => cliente.status === 'Ativo');
+    }
+
+    if (filtro === 'Inativos') {
+      return clientes.filter((cliente) => cliente.status !== 'Ativo');
+    }
+
+    return clientes;
+  }, [filtro]);
 
   const handleCadastrar = () => navigation.navigate('cadastroCliente');
-  const handleFiltrar = () => Alert.alert('Filtro', 'A lista foi atualizada para mostrar todos os clientes.');
+  const handleFiltrar = () => {
+    const proximoFiltro = filtro === 'Todos' ? 'Ativos' : filtro === 'Ativos' ? 'Inativos' : 'Todos';
+    setFiltro(proximoFiltro);
+    Alert.alert('Filtro', `Mostrando clientes ${proximoFiltro.toLowerCase()}.`);
+  };
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -37,7 +54,7 @@ function Clientes() {
             <Text style={styles.primaryButtonText}>+ Cadastrar</Text>
           </Pressable>
           <Pressable style={styles.secondaryButton} onPress={handleFiltrar}>
-            <Text style={styles.secondaryButtonText}>Filtrar</Text>
+            <Text style={styles.secondaryButtonText}>{filtro === 'Todos' ? 'Filtrar' : filtro}</Text>
           </Pressable>
         </View>
 
@@ -49,7 +66,7 @@ function Clientes() {
             <Text style={styles.th}>Ações</Text>
           </View>
 
-          {clientes.map((cliente) => (
+          {listaFiltrada.map((cliente) => (
             <View key={cliente.id} style={styles.row}>
               <Text style={styles.cell}>{cliente.id}</Text>
               <View style={styles.nameWrap}>
@@ -57,7 +74,9 @@ function Clientes() {
                 <Text style={styles.email}>{cliente.email}</Text>
               </View>
               <Text style={[styles.status, cliente.status === 'Ativo' ? styles.statusActive : styles.statusInactive]}>{cliente.status}</Text>
-              <Text style={styles.actionText}>Editar</Text>
+              <Pressable onPress={() => Alert.alert('Cliente', `Editar dados de ${cliente.nome}.`)}>
+                <Text style={styles.actionText}>Editar</Text>
+              </Pressable>
             </View>
           ))}
         </View>

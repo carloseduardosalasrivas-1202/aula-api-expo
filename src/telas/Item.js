@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const palette = {
   bg: '#0b0b0b',
@@ -12,6 +13,15 @@ const palette = {
 };
 
 function Item() {
+  const navigation = useNavigation();
+
+  const servicos = [
+    ['Corte clássico', 'R$ 45,00', '50 min'],
+    ['Barba completa', 'R$ 30,00', '25 min'],
+    ['Corte + barba', 'R$ 70,00', '70 min'],
+    ['Hidratação capilar', 'R$ 25,00', '20 min'],
+  ];
+
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -22,18 +32,24 @@ function Item() {
         </View>
 
         <View style={styles.listCard}>
-          {[
-            ['Corte clássico', 'R$ 45,00', '50 min'],
-            ['Barba completa', 'R$ 30,00', '25 min'],
-            ['Corte + barba', 'R$ 70,00', '70 min'],
-            ['Hidratação capilar', 'R$ 25,00', '20 min'],
-          ].map(([name, price, time], index) => (
+          {servicos.map(([name, price, time], index) => (
             <View key={index} style={styles.itemRow}>
               <View>
                 <Text style={styles.itemTitle}>{name}</Text>
                 <Text style={styles.itemMeta}>{time}</Text>
               </View>
-              <Text style={styles.itemPrice}>{price}</Text>
+              <View style={styles.itemSide}>
+                <Text style={styles.itemPrice}>{price}</Text>
+                <Pressable
+                  style={styles.itemButton}
+                  onPress={() => {
+                    Alert.alert('Agendar serviço', `${name} foi selecionado para reserva.`);
+                    navigation.navigate('agendamento');
+                  }}
+                >
+                  <Text style={styles.itemButtonText}>Agendar</Text>
+                </Pressable>
+              </View>
             </View>
           ))}
         </View>
@@ -103,10 +119,27 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 4,
   },
+  itemSide: {
+    alignItems: 'flex-end',
+    gap: 8,
+  },
   itemPrice: {
     color: palette.gold,
     fontSize: 16,
     fontWeight: '700',
+  },
+  itemButton: {
+    backgroundColor: 'rgba(201,162,39,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.4)',
+    borderRadius: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+  },
+  itemButtonText: {
+    color: palette.gold,
+    fontWeight: '700',
+    fontSize: 12,
   },
 });
 

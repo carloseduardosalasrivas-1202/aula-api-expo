@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   useWindowDimensions,
+  Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -36,6 +37,15 @@ function Login() {
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showCadastroModal, setShowCadastroModal] = useState(false);
+
+  const handleLogin = () => {
+    if (!email.trim() || !password.trim()) {
+      Alert.alert('Campos obrigatórios', 'Digite seu e-mail e senha para entrar.');
+      return;
+    }
+
+    navigation.navigate('home');
+  };
 
   return (
     <SafeAreaView style={styles.page}>
@@ -106,7 +116,7 @@ function Login() {
                 </Pressable>
               </View>
 
-              <Pressable style={styles.submitButton} onPress={() => navigation.navigate('home')}>
+              <Pressable style={styles.submitButton} onPress={handleLogin}>
                 <Text style={styles.submitButtonText}>Entrar</Text>
               </Pressable>
 

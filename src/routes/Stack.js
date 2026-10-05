@@ -7,9 +7,13 @@ import AgendamentoScreen from '../telas/Agendamento';
 import ClientesScreen from '../telas/Clientes';
 import CadastroClienteScreen from '../telas/CadastroCliente';
 import BarbeirosScreen from '../telas/Barbeiros';
+import NovoBarbeiroScreen from '../telas/NovoBarbeiro';
 import ProdutosScreen from '../telas/Produtos';
+import NovoProdutoScreen from '../telas/NovoProduto';
 import FinanceiroScreen from '../telas/Financeiro';
 import ConfiguracoesScreen from '../telas/Configuracoes';
+import PerfilScreen from '../telas/Perfil';
+import ItemScreen from '../telas/Item';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,9 +34,13 @@ function RootStack() {
       <Stack.Screen name="clientes" component={ClientesScreen} />
       <Stack.Screen name="cadastroCliente" component={CadastroClienteScreen} />
       <Stack.Screen name="barbeiros" component={BarbeirosScreen} />
+      <Stack.Screen name="novoBarbeiro" component={NovoBarbeiroScreen} />
       <Stack.Screen name="produtos" component={ProdutosScreen} />
+      <Stack.Screen name="novoProduto" component={NovoProdutoScreen} />
       <Stack.Screen name="financeiro" component={FinanceiroScreen} />
       <Stack.Screen name="configuracoes" component={ConfiguracoesScreen} />
+      <Stack.Screen name="perfil" component={PerfilScreen} />
+      <Stack.Screen name="servicos" component={ItemScreen} />
     </Stack.Navigator>
   );
 }
