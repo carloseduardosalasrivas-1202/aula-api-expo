@@ -38,6 +38,13 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [showCadastroModal, setShowCadastroModal] = useState(false);
 
+  const BrandLogo = () => (
+    <View style={styles.brandHeader}>
+      <Text style={styles.brandTitle}>Barber Prime</Text>
+      <Text style={styles.brandSubtitle}>Estilo & gestão</Text>
+    </View>
+  );
+
   const handleLogin = () => {
     if (!email.trim() || !password.trim()) {
       Alert.alert('Campos obrigatórios', 'Digite seu e-mail e senha para entrar.');
@@ -60,9 +67,7 @@ function Login() {
         >
           <View style={[styles.formArea, isPhone && styles.formAreaMobile]}>
             <View style={[styles.card, isPhone && styles.cardMobile]}>
-              <View style={styles.barberIcon}>
-                <Text style={styles.barberIconText}>✂</Text>
-              </View>
+                <BrandLogo />
 
               <Text style={styles.title}>Entrar</Text>
               <Text style={styles.subtitle}>Acesse sua conta e continue no seu melhor visual.</Text>
@@ -199,12 +204,23 @@ const styles = StyleSheet.create({
   pageContentMobile: {
     flexDirection: 'column',
   },
+  brandHeader: {
+    alignItems: 'center',
+    marginBottom: 18,
+  },
   brandTitle: {
     fontSize: 22,
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
-    color: colors.white,
-    marginBottom: 12,
+    color: colors.gold,
+    letterSpacing: 1.2,
+  },
+  brandSubtitle: {
+    marginTop: 6,
+    fontSize: 12,
+    color: '#d8d8d8',
+    textTransform: 'uppercase',
+    letterSpacing: 2,
   },
   brandTitleMobile: {
     fontSize: 18,
@@ -249,22 +265,6 @@ const styles = StyleSheet.create({
     maxWidth: 420,
     paddingVertical: 22,
     paddingHorizontal: 18,
-  },
-  barberIcon: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    borderWidth: 2,
-    borderColor: colors.gold,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    marginBottom: 18,
-    backgroundColor: 'rgba(201,162,39,0.08)',
-  },
-  barberIconText: {
-    fontSize: 32,
-    color: colors.gold,
   },
   title: {
     fontSize: 30,

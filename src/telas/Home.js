@@ -34,16 +34,18 @@ function HomeScreen() {
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
         <View style={styles.headerCard}>
-          <View style={styles.headerTop}>
-            <View>
-              <Text style={styles.eyebrow}>Barber Prime</Text>
-              <Text style={styles.greeting}>Bem-vindo, Rafael</Text>
+          <View style={styles.headerOverlay}>
+            <View style={styles.headerTop}>
+              <View>
+                <Text style={styles.eyebrow}>Barber Prime</Text>
+                <Text style={styles.greeting}>Bem-vindo, Rafael</Text>
+              </View>
+              <Pressable style={styles.logoutButton} onPress={handleLogout}>
+                <Text style={styles.logoutText}>Sair</Text>
+              </Pressable>
             </View>
-            <Pressable style={styles.logoutButton} onPress={handleLogout}>
-              <Text style={styles.logoutText}>Sair</Text>
-            </Pressable>
+            <Text style={styles.subtitle}>Seu atendimento está pronto para continuar.</Text>
           </View>
-          <Text style={styles.subtitle}>Seu atendimento está pronto para continuar.</Text>
         </View>
 
         <View style={styles.grid}>
@@ -71,12 +73,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerCard: {
-    backgroundColor: palette.card,
     borderRadius: 18,
     borderWidth: 1,
     borderColor: 'rgba(201,162,39,0.35)',
-    padding: 24,
     marginBottom: 20,
+    overflow: 'hidden',
+    backgroundColor: '#1a1a1a',
+  },
+  headerOverlay: {
+    padding: 24,
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(10, 10, 10, 0.72)',
   },
   headerTop: {
     flexDirection: 'row',
@@ -98,8 +105,9 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   subtitle: {
-    color: palette.text,
+    color: '#f5f5f5',
     fontSize: 15,
+    fontWeight: '500',
   },
   logoutButton: {
     backgroundColor: 'rgba(201,162,39,0.12)',
