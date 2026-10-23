@@ -34,6 +34,17 @@ function Perfil() {
           <Text style={styles.role}>Cliente premium</Text>
         </View>
 
+        <View style={styles.summaryRow}>
+          <View style={styles.summaryCard}>
+            <Text style={styles.summaryLabel}>Serviços</Text>
+            <Text style={styles.summaryValue}>18</Text>
+          </View>
+          <View style={styles.summaryCard}>
+            <Text style={styles.summaryLabel}>Status</Text>
+            <Text style={styles.summaryValue}>Gold</Text>
+          </View>
+        </View>
+
         <View style={styles.infoCard}>
           <Text style={styles.label}>E-mail</Text>
           <Text style={styles.value}>rafael@email.com</Text>
@@ -76,6 +87,11 @@ const styles = StyleSheet.create({
     padding: 24,
     alignItems: 'center',
     marginBottom: 18,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 8,
   },
   avatarWrap: {
     width: 88,
@@ -102,6 +118,31 @@ const styles = StyleSheet.create({
   role: {
     color: palette.muted,
     fontSize: 15,
+  },
+  summaryRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 18,
+  },
+  summaryCard: {
+    flex: 1,
+    backgroundColor: 'rgba(201,162,39,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.22)',
+    borderRadius: 14,
+    padding: 14,
+  },
+  summaryLabel: {
+    color: '#d9d9d9',
+    fontSize: 11,
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+    marginBottom: 4,
+  },
+  summaryValue: {
+    color: palette.white,
+    fontSize: 18,
+    fontWeight: '700',
   },
   infoCard: {
     backgroundColor: palette.card,

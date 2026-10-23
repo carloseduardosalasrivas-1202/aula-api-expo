@@ -41,6 +41,11 @@ function Agendamento() {
           <Text style={styles.title}>Nova reserva</Text>
         </View>
 
+        <View style={styles.summaryCard}>
+          <Text style={styles.summaryLabel}>Resumo</Text>
+          <Text style={styles.summaryValue}>{selectedService} • {selectedBarbeiro}</Text>
+        </View>
+
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>Calendário</Text>
           <View style={styles.daysRow}>
@@ -152,6 +157,25 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(201,162,39,0.35)',
     borderRadius: 16,
     padding: 20,
+  },
+  summaryCard: {
+    backgroundColor: 'rgba(201,162,39,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.25)',
+    borderRadius: 14,
+    padding: 14,
+  },
+  summaryLabel: {
+    color: '#d8d8d8',
+    fontSize: 11,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 4,
+  },
+  summaryValue: {
+    color: palette.white,
+    fontSize: 16,
+    fontWeight: '700',
   },
   eyebrow: {
     color: palette.gold,

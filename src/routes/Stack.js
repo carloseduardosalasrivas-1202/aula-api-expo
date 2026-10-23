@@ -14,6 +14,7 @@ import FinanceiroScreen from '../telas/Financeiro';
 import ConfiguracoesScreen from '../telas/Configuracoes';
 import PerfilScreen from '../telas/Perfil';
 import ItemScreen from '../telas/Item';
+import UserTabNavigator from './userTabNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ function RootStack() {
     >
       <Stack.Screen name="login" component={LoginScreen} />
       <Stack.Screen name="home" component={HomeScreen} />
+      <Stack.Screen name="userTabs" component={UserTabNavigator} />
       <Stack.Screen name="cadUsu" component={CadusuarioScreen} />
       <Stack.Screen name="recsenha" component={RecSenhaScrean} />
       <Stack.Screen name="agendamento" component={AgendamentoScreen} />

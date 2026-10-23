@@ -13,7 +13,7 @@ const palette = {
 };
 
 function Configuracoes() {
-  const [nomeBarbearia, setNomeBarbearia] = useState('Hope Barbearia');
+  const [nomeBarbearia, setNomeBarbearia] = useState('Hope barbearia');
   const [telefone, setTelefone] = useState('(11) 4002-8922');
   const [endereco, setEndereco] = useState('Rua da Barba, 123');
   const [horario, setHorario] = useState('09:00 às 19:00');

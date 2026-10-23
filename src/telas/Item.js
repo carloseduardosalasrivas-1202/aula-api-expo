@@ -26,15 +26,26 @@ function Item() {
     <SafeAreaView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.headerCard}>
-          <Text style={styles.eyebrow}>Barber Prime</Text>
+          <Text style={styles.eyebrow}>Hope barbearia</Text>
           <Text style={styles.title}>Serviços premium</Text>
           <Text style={styles.subtitle}>Confira os melhores serviços da barbearia.</Text>
+        </View>
+
+        <View style={styles.summaryRow}>
+          <View style={styles.summaryCard}>
+            <Text style={styles.summaryLabel}>Mais pedido</Text>
+            <Text style={styles.summaryValue}>Corte + barba</Text>
+          </View>
+          <View style={styles.summaryCard}>
+            <Text style={styles.summaryLabel}>Tempo médio</Text>
+            <Text style={styles.summaryValue}>45 min</Text>
+          </View>
         </View>
 
         <View style={styles.listCard}>
           {servicos.map(([name, price, time], index) => (
             <View key={index} style={styles.itemRow}>
-              <View>
+              <View style={styles.itemInfo}>
                 <Text style={styles.itemTitle}>{name}</Text>
                 <Text style={styles.itemMeta}>{time}</Text>
               </View>
@@ -75,6 +86,11 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     padding: 20,
     marginBottom: 18,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 6,
   },
   eyebrow: {
     color: palette.gold,
@@ -93,6 +109,31 @@ const styles = StyleSheet.create({
   subtitle: {
     color: palette.text,
     fontSize: 15,
+  },
+  summaryRow: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 18,
+  },
+  summaryCard: {
+    flex: 1,
+    backgroundColor: 'rgba(201,162,39,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.22)',
+    borderRadius: 14,
+    padding: 14,
+  },
+  summaryLabel: {
+    color: '#d6d6d6',
+    fontSize: 11,
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+    marginBottom: 6,
+  },
+  summaryValue: {
+    color: palette.white,
+    fontSize: 16,
+    fontWeight: '700',
   },
   listCard: {
     backgroundColor: palette.card,

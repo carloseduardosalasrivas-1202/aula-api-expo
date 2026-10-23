@@ -25,6 +25,12 @@ function HomeScreen() {
     { label: 'Configurações', icon: '⚙️', route: 'configuracoes', value: 'Loja' },
   ];
 
+  const stats = [
+    { label: 'Hoje', value: '12' },
+    { label: 'Receita', value: 'R$ 8,4k' },
+    { label: 'Avaliação', value: '4.9' },
+  ];
+
   const handleLogout = () => {
     Alert.alert('Logout', 'Sessão encerrada com sucesso.');
     navigation.navigate('login');
@@ -37,7 +43,7 @@ function HomeScreen() {
           <View style={styles.headerOverlay}>
             <View style={styles.headerTop}>
               <View>
-                <Text style={styles.eyebrow}>Barber Prime</Text>
+                <Text style={styles.eyebrow}>Hope barbearia</Text>
                 <Text style={styles.greeting}>Bem-vindo, Rafael</Text>
               </View>
               <Pressable style={styles.logoutButton} onPress={handleLogout}>
@@ -45,6 +51,15 @@ function HomeScreen() {
               </Pressable>
             </View>
             <Text style={styles.subtitle}>Seu atendimento está pronto para continuar.</Text>
+
+            <View style={styles.statRow}>
+              {stats.map((item) => (
+                <View key={item.label} style={styles.statCard}>
+                  <Text style={styles.statLabel}>{item.label}</Text>
+                  <Text style={styles.statValue}>{item.value}</Text>
+                </View>
+              ))}
+            </View>
           </View>
         </View>
 
@@ -73,23 +88,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerCard: {
-    borderRadius: 18,
+    borderRadius: 22,
     borderWidth: 1,
     borderColor: 'rgba(201,162,39,0.35)',
     marginBottom: 20,
     overflow: 'hidden',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#191919',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 14 },
+    shadowOpacity: 0.25,
+    shadowRadius: 18,
+    elevation: 8,
   },
   headerOverlay: {
-    padding: 24,
+    padding: 22,
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(10, 10, 10, 0.72)',
+    backgroundColor: 'rgba(15, 15, 15, 0.92)',
   },
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
   eyebrow: {
     color: palette.gold,
@@ -108,6 +128,33 @@ const styles = StyleSheet.create({
     color: '#f5f5f5',
     fontSize: 15,
     fontWeight: '500',
+    marginBottom: 18,
+  },
+  statRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+  },
+  statCard: {
+    flex: 1,
+    backgroundColor: 'rgba(201,162,39,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.25)',
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  statLabel: {
+    color: '#d8d8d8',
+    fontSize: 11,
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+    marginBottom: 4,
+  },
+  statValue: {
+    color: palette.white,
+    fontSize: 18,
+    fontWeight: '700',
   },
   logoutButton: {
     backgroundColor: 'rgba(201,162,39,0.12)',
@@ -130,12 +177,17 @@ const styles = StyleSheet.create({
   tile: {
     width: '48%',
     minHeight: 150,
-    borderRadius: 16,
+    borderRadius: 18,
     backgroundColor: palette.card,
     borderWidth: 1,
     borderColor: palette.border,
     padding: 18,
     justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
+    elevation: 6,
   },
   tileIcon: {
     fontSize: 28,

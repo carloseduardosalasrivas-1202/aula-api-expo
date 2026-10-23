@@ -37,11 +37,12 @@ function Login() {
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showCadastroModal, setShowCadastroModal] = useState(false);
+  const [accessMode, setAccessMode] = useState('cliente');
 
   const BrandLogo = () => (
     <View style={styles.brandHeader}>
-      <Text style={styles.brandTitle}>Barber Prime</Text>
-      <Text style={styles.brandSubtitle}>Estilo & gestão</Text>
+      <Text style={styles.brandTitle}>Hope barbearia</Text>
+      <Text style={styles.brandSubtitle}>Estilo & presença</Text>
     </View>
   );
 
@@ -51,7 +52,12 @@ function Login() {
       return;
     }
 
-    navigation.navigate('home');
+    if (accessMode === 'admin') {
+      navigation.navigate('home');
+      return;
+    }
+
+    navigation.navigate('userTabs');
   };
 
   return (
@@ -71,6 +77,21 @@ function Login() {
 
               <Text style={styles.title}>Entrar</Text>
               <Text style={styles.subtitle}>Acesse sua conta e continue no seu melhor visual.</Text>
+
+              <View style={styles.accessSelector}>
+                <Pressable
+                  style={[styles.accessOption, accessMode === 'cliente' && styles.accessOptionActive]}
+                  onPress={() => setAccessMode('cliente')}
+                >
+                  <Text style={[styles.accessOptionText, accessMode === 'cliente' && styles.accessOptionTextActive]}>Usuário</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.accessOption, accessMode === 'admin' && styles.accessOptionActive]}
+                  onPress={() => setAccessMode('admin')}
+                >
+                  <Text style={[styles.accessOptionText, accessMode === 'admin' && styles.accessOptionTextActive]}>Barbeiro</Text>
+                </Pressable>
+              </View>
 
               <View style={styles.formGroup}>
                 <Text style={styles.label}>E-mail</Text>
@@ -122,7 +143,7 @@ function Login() {
               </View>
 
               <Pressable style={styles.submitButton} onPress={handleLogin}>
-                <Text style={styles.submitButtonText}>Entrar</Text>
+                <Text style={styles.submitButtonText}>{accessMode === 'admin' ? 'Entrar como barbeiro' : 'Entrar como usuário'}</Text>
               </Pressable>
 
               <View style={styles.divider}>
@@ -135,7 +156,7 @@ function Login() {
                 <Text style={styles.secondaryButtonText}>✦ Criar conta</Text>
               </Pressable>
 
-              <Text style={styles.footerText}>© 2026 Barber Prime</Text>
+              <Text style={styles.footerText}>© 2026 Hope barbearia</Text>
             </View>
           </View>
         </ScrollView>
@@ -278,6 +299,36 @@ const styles = StyleSheet.create({
     color: '#bdbdbd',
     textAlign: 'center',
     marginBottom: 22,
+  },
+  accessSelector: {
+    flexDirection: 'row',
+    backgroundColor: '#171717',
+    borderWidth: 1,
+    borderColor: '#2b2b2b',
+    borderRadius: 12,
+    padding: 4,
+    marginBottom: 18,
+  },
+  accessOption: {
+    flex: 1,
+    height: 42,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  accessOptionActive: {
+    backgroundColor: 'rgba(201,162,39,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.35)',
+  },
+  accessOptionText: {
+    color: '#d5d5d5',
+    fontWeight: '600',
+    fontSize: 14,
+  },
+  accessOptionTextActive: {
+    color: colors.gold,
+    fontWeight: '700',
   },
   formGroup: {
     marginBottom: 16,
