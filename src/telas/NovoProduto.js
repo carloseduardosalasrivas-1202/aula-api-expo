@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const palette = {
   bg: '#0b0b0b',
@@ -24,10 +24,21 @@ const palette = {
 
 function NovoProduto() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const produtoParaEditar = route.params?.produtoParaEditar;
   const [nome, setNome] = useState('');
   const [categoria, setCategoria] = useState('');
   const [quantidade, setQuantidade] = useState('');
   const [preco, setPreco] = useState('');
+
+  useEffect(() => {
+    if (produtoParaEditar) {
+      setNome(produtoParaEditar.nome || '');
+      setCategoria(produtoParaEditar.categoria || '');
+      setQuantidade(String(produtoParaEditar.qtd || ''));
+      setPreco((produtoParaEditar.preco || '').replace('R$ ', '').replace(',', '.'));
+    }
+  }, [produtoParaEditar]);
 
   const handleSave = () => {
     if (!nome.trim() || !categoria.trim() || !quantidade.trim() || !preco.trim()) {
@@ -35,8 +46,31 @@ function NovoProduto() {
       return;
     }
 
-    Alert.alert('Produto salvo', `${nome} foi adicionado ao estoque com sucesso.`);
-    navigation.navigate('produtos');
+    const quantidadeNumerica = Number(quantidade);
+    const precoNumerico = Number(preco.replace(',', '.'));
+
+    if (Number.isNaN(quantidadeNumerica) || Number.isNaN(precoNumerico)) {
+      Alert.alert('Valores inválidos', 'Quantidade e preço precisam ser valores válidos.');
+      return;
+    }
+
+    const itemSalvo = {
+      id: produtoParaEditar?.id ?? Date.now(),
+      nome: nome.trim(),
+      categoria: categoria.trim(),
+      qtd: quantidadeNumerica,
+      preco: `R$ ${precoNumerico.toFixed(2).replace('.', ',')}`,
+      status: quantidadeNumerica <= 5 ? 'Baixo' : 'Normal',
+    };
+
+    if (produtoParaEditar) {
+      Alert.alert('Produto atualizado', `${itemSalvo.nome} foi atualizado com sucesso.`);
+      navigation.navigate('estoque', { produtoAtualizado: itemSalvo });
+      return;
+    }
+
+    Alert.alert('Produto salvo', `${itemSalvo.nome} foi adicionado ao estoque com sucesso.`);
+    navigation.navigate('estoque', { novoItem: itemSalvo });
   };
 
   return (

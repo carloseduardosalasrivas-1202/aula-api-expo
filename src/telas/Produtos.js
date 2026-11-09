@@ -23,12 +23,26 @@ function Produtos() {
 
   const handleNewProduct = () => navigation.navigate('novoProduto');
 
+  const totalEstoque = produtos.reduce((sum, item) => sum + Number(item.qtd), 0);
+  const baixoEstoque = produtos.filter((item) => item.status === 'Baixo').length;
+
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.headerCard}>
           <Text style={styles.eyebrow}>Produtos</Text>
           <Text style={styles.title}>Estoque</Text>
+        </View>
+
+        <View style={styles.summaryRow}>
+          <View style={styles.summaryBox}>
+            <Text style={styles.summaryLabel}>Total</Text>
+            <Text style={styles.summaryValue}>{totalEstoque} itens</Text>
+          </View>
+          <View style={styles.summaryBox}>
+            <Text style={styles.summaryLabel}>Baixo</Text>
+            <Text style={styles.summaryValue}>{baixoEstoque} itens</Text>
+          </View>
         </View>
 
         <View style={styles.toolbar}>
@@ -87,6 +101,30 @@ const styles = StyleSheet.create({
   title: {
     color: palette.white,
     fontSize: 28,
+    fontWeight: '700',
+  },
+  summaryRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  summaryBox: {
+    flex: 1,
+    backgroundColor: 'rgba(201,162,39,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.2)',
+    borderRadius: 12,
+    padding: 12,
+  },
+  summaryLabel: {
+    color: palette.muted,
+    fontSize: 11,
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+    marginBottom: 4,
+  },
+  summaryValue: {
+    color: palette.white,
+    fontSize: 16,
     fontWeight: '700',
   },
   toolbar: {

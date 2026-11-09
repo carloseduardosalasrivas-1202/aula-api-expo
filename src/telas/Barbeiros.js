@@ -13,9 +13,9 @@ const palette = {
 };
 
 const barbeiros = [
-  { nome: 'João', especialidade: 'Corte', status: 'Ativo' },
-  { nome: 'Carlos', especialidade: 'Barba', status: 'Ativo' },
-  { nome: 'Pedro', especialidade: 'Corte + barba', status: 'Inativo' },
+  { nome: 'João', especialidade: 'Corte', status: 'Ativo', agenda: '08 atendimentos' },
+  { nome: 'Carlos', especialidade: 'Barba', status: 'Ativo', agenda: '06 atendimentos' },
+  { nome: 'Pedro', especialidade: 'Corte + barba', status: 'Inativo', agenda: '03 atendimentos' },
 ];
 
 function Barbeiros() {
@@ -50,6 +50,7 @@ function Barbeiros() {
               <View style={styles.info}>
                 <Text style={styles.name}>{barbeiro.nome}</Text>
                 <Text style={styles.specialty}>{barbeiro.especialidade}</Text>
+                <Text style={styles.agenda}>{barbeiro.agenda}</Text>
               </View>
               <View style={styles.meta}>
                 <Text style={[styles.status, barbeiro.status === 'Ativo' ? styles.statusActive : styles.statusInactive]}>{barbeiro.status}</Text>
@@ -152,6 +153,11 @@ const styles = StyleSheet.create({
     color: palette.muted,
     fontSize: 12,
     marginTop: 2,
+  },
+  agenda: {
+    color: palette.text,
+    fontSize: 11,
+    marginTop: 4,
   },
   meta: {
     alignItems: 'flex-end',

@@ -26,6 +26,17 @@ function ClientePerfil() {
           <Text style={styles.role}>Cliente Gold</Text>
         </View>
 
+        <View style={styles.statsRow}>
+          <View style={styles.statCard}>
+            <Text style={styles.statLabel}>Atendimentos</Text>
+            <Text style={styles.statValue}>18</Text>
+          </View>
+          <View style={styles.statCard}>
+            <Text style={styles.statLabel}>Plano</Text>
+            <Text style={styles.statValue}>Gold</Text>
+          </View>
+        </View>
+
         <View style={styles.card}>
           <Text style={styles.label}>E-mail</Text>
           <Text style={styles.value}>rafael@email.com</Text>
@@ -91,6 +102,30 @@ const styles = StyleSheet.create({
     color: palette.muted,
     fontSize: 15,
     textAlign: 'center',
+  },
+  statsRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  statCard: {
+    flex: 1,
+    backgroundColor: 'rgba(201,162,39,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.25)',
+    borderRadius: 14,
+    padding: 14,
+  },
+  statLabel: {
+    color: palette.muted,
+    fontSize: 11,
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+    marginBottom: 4,
+  },
+  statValue: {
+    color: palette.white,
+    fontSize: 18,
+    fontWeight: '700',
   },
   label: {
     color: palette.gold,

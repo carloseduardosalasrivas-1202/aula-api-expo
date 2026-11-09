@@ -13,10 +13,10 @@ const palette = {
 };
 
 const servicos = [
-  { nome: 'Corte clássico', tempo: '50 min', preco: 'R$ 45,00' },
-  { nome: 'Barba completa', tempo: '25 min', preco: 'R$ 30,00' },
-  { nome: 'Corte + barba', tempo: '70 min', preco: 'R$ 70,00' },
-  { nome: 'Hidratação capilar', tempo: '20 min', preco: 'R$ 25,00' },
+  { nome: 'Corte clássico', tempo: '50 min', preco: 'R$ 45,00', icone: '✂️' },
+  { nome: 'Barba completa', tempo: '25 min', preco: 'R$ 30,00', icone: '🧔' },
+  { nome: 'Corte + barba', tempo: '70 min', preco: 'R$ 70,00', icone: '💈' },
+  { nome: 'Hidratação capilar', tempo: '20 min', preco: 'R$ 25,00', icone: '✨' },
 ];
 
 function ClienteServicos() {
@@ -37,10 +37,16 @@ function ClienteServicos() {
 
         {servicos.map((servico) => (
           <View key={servico.nome} style={styles.cardItem}>
-            <View>
-              <Text style={styles.serviceName}>{servico.nome}</Text>
-              <Text style={styles.serviceMeta}>{servico.tempo}</Text>
+            <View style={styles.serviceInfo}>
+              <View style={styles.iconWrap}>
+                <Text style={styles.iconText}>{servico.icone}</Text>
+              </View>
+              <View>
+                <Text style={styles.serviceName}>{servico.nome}</Text>
+                <Text style={styles.serviceMeta}>{servico.tempo}</Text>
+              </View>
             </View>
+
             <View style={styles.rightSide}>
               <Text style={styles.price}>{servico.preco}</Text>
               <Pressable style={styles.button} onPress={() => handleAgendar(servico)}>
@@ -95,6 +101,25 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
   },
+  serviceInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  iconWrap: {
+    width: 42,
+    height: 42,
+    borderRadius: 12,
+    backgroundColor: 'rgba(201,162,39,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  iconText: {
+    fontSize: 20,
+  },
   serviceName: {
     color: palette.white,
     fontSize: 18,
@@ -115,7 +140,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   button: {
-    backgroundColor: 'rgba(201,162,39,0.1)',
+    backgroundColor: 'rgba(201,162,39,0.12)',
     borderWidth: 1,
     borderColor: 'rgba(201,162,39,0.35)',
     paddingVertical: 8,

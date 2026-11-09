@@ -9,6 +9,7 @@ const palette = {
   white: '#f6f6f6',
   text: '#d9d9d9',
   border: '#2f2f2f',
+  muted: '#8a8a8a',
 };
 
 function HomeScreen() {
@@ -19,7 +20,7 @@ function HomeScreen() {
     { label: 'Clientes', icon: '👥', route: 'clientes', value: '148 ativos' },
     { label: 'Barbeiros', icon: '💈', route: 'barbeiros', value: '5 no time' },
     { label: 'Serviços', icon: '✂️', route: 'servicos', value: '4 itens' },
-    { label: 'Produtos', icon: '📦', route: 'produtos', value: '84 itens' },
+    { label: 'Estoque', icon: '📦', route: 'estoque', value: '84 itens' },
     { label: 'Financeiro', icon: '📈', route: 'financeiro', value: 'R$ 8.4k' },
     { label: 'Perfil', icon: '👤', route: 'perfil', value: 'Rafael' },
     { label: 'Configurações', icon: '⚙️', route: 'configuracoes', value: 'Loja' },

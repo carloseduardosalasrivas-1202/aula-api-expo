@@ -14,9 +14,9 @@ const palette = {
 };
 
 const quickActions = [
-  { label: 'Serviços', icon: '💈', route: 'Serviços' },
+  { label: 'Agenda', icon: '📅', route: 'Agenda' },
   { label: 'Agendar', icon: '✂️', route: 'Serviços' },
-  { label: 'Meu perfil', icon: '👤', route: 'Perfil' },
+  { label: 'Perfil', icon: '👤', route: 'Perfil' },
 ];
 
 function ClienteHome() {
@@ -62,13 +62,17 @@ function ClienteHome() {
           <Text style={styles.sectionTitle}>Próximo agendamento</Text>
           <View style={styles.bookingBox}>
             <Text style={styles.bookingTitle}>Corte + barba</Text>
-            <Text style={styles.bookingMeta}>Hoje • 09:00 • João</Text>
+            <Text style={styles.bookingMeta}>Data: Hoje</Text>
+            <Text style={styles.bookingMeta}>Horário: 09:00</Text>
+            <Text style={styles.bookingMeta}>Atendimento: João</Text>
+            <View style={styles.statusBadge}>
+              <Text style={styles.statusText}>Confirmado</Text>
+            </View>
             <Pressable style={styles.primaryButton} onPress={() => navigation.navigate('Agenda')}>
               <Text style={styles.primaryButtonText}>Ver agenda</Text>
             </Pressable>
           </View>
         </View>
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -199,7 +203,25 @@ const styles = StyleSheet.create({
   bookingMeta: {
     color: palette.text,
     fontSize: 14,
-    marginBottom: 18,
+    marginBottom: 6,
+  },
+  statusBadge: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(201,162,39,0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.35)',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginTop: 8,
+    marginBottom: 16,
+  },
+  statusText: {
+    color: palette.goldSoft,
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 0.8,
+    textTransform: 'uppercase',
   },
   primaryButton: {
     backgroundColor: palette.gold,

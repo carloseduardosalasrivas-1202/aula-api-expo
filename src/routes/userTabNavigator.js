@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ClienteHome from '../telas/ClienteHome';
 import ClienteServicos from '../telas/ClienteServicos';
+import ClienteAgendamentos from '../telas/ClienteAgendamentos';
 import ClientePerfil from '../telas/ClientePerfil';
 
 const Tab = createBottomTabNavigator();
@@ -30,6 +31,7 @@ function UserTabNavigator() {
     >
       <Tab.Screen name="Inicio" component={ClienteHome} />
       <Tab.Screen name="Serviços" component={ClienteServicos} />
+      <Tab.Screen name="Agenda" component={ClienteAgendamentos} />
       <Tab.Screen name="Perfil" component={ClientePerfil} />
     </Tab.Navigator>
   );

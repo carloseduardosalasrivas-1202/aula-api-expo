@@ -9,6 +9,7 @@ import CadastroClienteScreen from '../telas/CadastroCliente';
 import BarbeirosScreen from '../telas/Barbeiros';
 import NovoBarbeiroScreen from '../telas/NovoBarbeiro';
 import ProdutosScreen from '../telas/Produtos';
+import EstoqueScreen from '../telas/Estoque';
 import NovoProdutoScreen from '../telas/NovoProduto';
 import FinanceiroScreen from '../telas/Financeiro';
 import ConfiguracoesScreen from '../telas/Configuracoes';
@@ -38,6 +39,7 @@ function RootStack() {
       <Stack.Screen name="barbeiros" component={BarbeirosScreen} />
       <Stack.Screen name="novoBarbeiro" component={NovoBarbeiroScreen} />
       <Stack.Screen name="produtos" component={ProdutosScreen} />
+      <Stack.Screen name="estoque" component={EstoqueScreen} />
       <Stack.Screen name="novoProduto" component={NovoProdutoScreen} />
       <Stack.Screen name="financeiro" component={FinanceiroScreen} />
       <Stack.Screen name="configuracoes" component={ConfiguracoesScreen} />

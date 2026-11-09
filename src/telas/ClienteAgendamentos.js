@@ -12,8 +12,8 @@ const palette = {
 };
 
 const agenda = [
-  { dia: 'Hoje', horario: '09:00', servico: 'Corte + barba', barbeiro: 'João' },
-  { dia: 'Quinta', horario: '14:30', servico: 'Barba completa', barbeiro: 'Carlos' },
+  { dia: 'Hoje', horario: '09:00', servico: 'Corte + barba', barbeiro: 'João', status: 'Confirmado' },
+  { dia: 'Quinta', horario: '14:30', servico: 'Barba completa', barbeiro: 'Carlos', status: 'Pendente' },
 ];
 
 function ClienteAgendamentos() {
@@ -32,6 +32,11 @@ function ClienteAgendamentos() {
           <Text style={styles.title}>Seus compromissos</Text>
         </View>
 
+        <View style={styles.summaryCard}>
+          <Text style={styles.summaryLabel}>Próximo atendimento</Text>
+          <Text style={styles.summaryValue}>Corte + barba • 09:00 • João</Text>
+        </View>
+
         <View style={styles.sectionCard}>
           <Text style={styles.sectionTitle}>Próximos</Text>
           {agenda.map((item, index) => (
@@ -43,6 +48,7 @@ function ClienteAgendamentos() {
               <View style={styles.bookingInfo}>
                 <Text style={styles.bookingMeta}>{item.horario}</Text>
                 <Text style={styles.bookingMeta}>{item.barbeiro}</Text>
+                <Text style={[styles.bookingStatus, item.status === 'Confirmado' ? styles.statusConfirmed : styles.statusPending]}>{item.status}</Text>
               </View>
             </View>
           ))}
@@ -117,6 +123,25 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '700',
   },
+  summaryCard: {
+    backgroundColor: 'rgba(201,162,39,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(201,162,39,0.2)',
+    borderRadius: 14,
+    padding: 14,
+  },
+  summaryLabel: {
+    color: palette.muted,
+    fontSize: 11,
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
+    marginBottom: 4,
+  },
+  summaryValue: {
+    color: palette.white,
+    fontSize: 16,
+    fontWeight: '700',
+  },
   sectionCard: {
     backgroundColor: palette.card,
     borderWidth: 1,
@@ -157,6 +182,19 @@ const styles = StyleSheet.create({
     color: palette.text,
     fontSize: 12,
     marginBottom: 2,
+  },
+  bookingStatus: {
+    marginTop: 4,
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 0.6,
+    textTransform: 'uppercase',
+  },
+  statusConfirmed: {
+    color: '#7fe6a1',
+  },
+  statusPending: {
+    color: '#ffb86c',
   },
   label: {
     color: palette.white,
